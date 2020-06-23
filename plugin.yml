@@ -1,0 +1,83 @@
+name: GuildPlugin
+version: 1.0
+author: Sled
+main: dev.sled.RPG.Main
+description: Guild plugin! Guilds, parties, quests, leveling system!
+prefix: Guild
+load: STARTUP
+
+depend: [Vault, Essentials, EssentialsChat, GroupManager]
+
+commands:
+  gp_test_economy:
+    description: Test the functionality of the vault's economy
+    usage: No arguments! Only '/test_economy'!
+  
+  gp_test_permission:
+    description: Test the functionality of the vault's permission
+    usage: /test_permission <permission>
+    
+  career:
+    description: Shows the guild plugin career data
+    
+  stats:
+    description: Show player leveling data
+    
+  gp_reload_leveling_system:
+    permission: gp.reload.permission
+    permisison-message: You need op to access this command!
+    description: Reloads the configs for guild plugin leveling system
+    usage: /gp_reload_leveling_system
+    
+  gp_enable_leveling_system:
+    permission: gp.enable.leveling.system.permission
+    permisison-message: You need op to access this command!
+    description: Enables the guild plugin leveling system (enabled by default)
+    usage: /gp_enable_leveling_system
+      
+  gp_disable_leveling_system:
+    permission: gp.disable.leveling.system.permission
+    permisison-message: You need op to access this command!
+    description: Disables the guild plugin leveling system
+    usage: /gp_disable_leveling_system
+    
+  gp_change_level:
+    permission: gp.change.level.permission
+    permisison-message: You need op to access this command!
+    description: Changes the level of a player to a give one
+    usage: /gp_change_level <player> <value>
+    
+  gp_change_current_xp:
+    permission: gp.change.current.xp.permission
+    permisison-message: You need op to access this command!
+    description: Changes the current xp of a player, minding the level
+    usage: /gp_change_current_xp <player> <value>
+    
+  gp_player_set:
+    permission: gp.change.current.xp.permission
+    permisison-message: You need op to access this command!
+    description: Setts the current leveling data of a player
+    usage: /gp_player_set <player> <command> <value>
+      
+permissions:
+  gp.reload.permission:
+    dafault: op
+    
+  gp.enable.leveling.system.permission:
+    default: op
+    
+  gp.disable.leveling.system.permission:
+    default: op
+    
+  gp.change.level.permission:
+    default: op
+  
+  gp.change.current.xp.permission:
+    default: op
+    
+  gp.op.permission:
+     default: op
+  
+  
+  
+  
