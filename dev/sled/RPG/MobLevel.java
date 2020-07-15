@@ -3,6 +3,7 @@ package dev.sled.RPG;
 import java.util.Random;
 
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.attribute.Attributable;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -13,6 +14,7 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 
 import dev.sled.RPG.util.Storage;
+import dev.sled.RPG.util.UtilityFunctions;
 /**
 
 * This class holds the mob level functions
@@ -26,8 +28,9 @@ import dev.sled.RPG.util.Storage;
 public class MobLevel
 {
 	// Global variables
-	private PlayerLoadData pld = new PlayerLoadData();
+	//private PlayerLoadData pld = new PlayerLoadData();
 	private Random rand = new Random();
+	private UtilityFunctions uf = new UtilityFunctions();
 	
 	/**
 	 * Setters.
@@ -43,8 +46,10 @@ public class MobLevel
 		
 		Storage store = new Storage();
 		String mob_name = "";
+		Location world_spawn = Storage.plugin.getServer().getWorld("world").getSpawnLocation();
 		int nr = 0;
-		int level = pld.get_player_data(player).get_player_level().get_level();
+		//int level = pld.get_player_data(player).get_player_level().get_level();
+		long dist = 0;
 		
 		if(entity instanceof LivingEntity)
 			if((LivingEntity) entity instanceof Monster)
@@ -57,14 +62,23 @@ public class MobLevel
 					
 					if(!arr[0].equals("Level"))
 					{
-						nr = rand.nextInt(scale * 2 + 1) - scale;
-						nr += level;
-						
-						if(nr < 1) nr = 1;
-						if(nr > max_level) nr = max_level;
+						nr = rand.nextInt(scale);
+						//nr = rand.nextInt(scale * 2 + 1) - scale;
+						//nr += level;
 						
 						if(((LivingEntity) entity).getRemoveWhenFarAway())
 						{
+							dist =Math.round(uf.get_distance_cylinder(world_spawn, entity.getLocation()));
+							
+							if(dist >= 0 && dist <= 500)
+								nr += 0;
+							
+							if(dist > 500)
+								nr += 5 * ((dist - 500) / 250);
+							
+							if(nr < 1) nr = 1;
+							if(nr > max_level) nr = max_level;
+							
 							entity.setCustomName("Level " + nr + " " + mob_name);
 							((LivingEntity) entity).setRemoveWhenFarAway(true);
 							set_mob_buffs((Monster) entity, nr);

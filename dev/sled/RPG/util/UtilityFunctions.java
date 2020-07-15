@@ -162,6 +162,26 @@ public class UtilityFunctions
 	/**
 	 * Getters.
 	 * 
+	 * Function which returns the distance in a cylinder form between 2 locations.
+	 * 
+	 * @param Location, Location
+	 * @return double
+	 */
+	public double get_distance_cylinder(Location l1, Location l2)
+	{
+		double dist = 0.0;
+		
+		double dist_x = Math.pow(Math.abs(l2.getX() - l1.getX()), 2);
+		double dist_y = Math.pow(Math.abs(l2.getY() - l1.getY()), 2);
+		
+		dist = Math.sqrt(dist_x + dist_y);
+		
+		return dist;
+	}
+	
+	/**
+	 * Getters.
+	 * 
 	 * Function which returns the entity a player is looking at.
 	 * 
 	 * @param Player

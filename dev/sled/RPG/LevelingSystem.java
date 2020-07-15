@@ -553,6 +553,7 @@ public class LevelingSystem
 				case "/gp_change_level": msgc.msg_change_level(command, sender); break;
 				case "/gp_change_current_xp": msgc.msg_change_current_xp(command, player, sender); break;
 				case "/heal": msgc.msg_heal_command_handler(command, player); break;
+				case "/butcher": msgc.msg_butcher_command_handler(player); break;
 				default: return;
 			}
 

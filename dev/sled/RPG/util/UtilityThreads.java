@@ -329,6 +329,8 @@ public class UtilityThreads
 	
 	public void stop_players_threads()
 	{
+		if(each_player_threads == null) return;
+			
 		for(Map.Entry<Player, Thread> entry : each_player_threads.entrySet())
 		{
 			Thread t = entry.getValue();			
