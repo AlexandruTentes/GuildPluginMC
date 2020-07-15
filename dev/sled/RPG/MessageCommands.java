@@ -1,10 +1,9 @@
 package dev.sled.RPG;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -347,22 +346,19 @@ public class MessageCommands
 	 */
 	public void msg_butcher_command_handler(Player player)
 	{
-		World world = player.getWorld();
-		Collection<Entity> entity_arr;
-		Entity entity = null;
+		List<Entity> entity_arr;
 		Monster monster = null;
+		int radius = 24;
 		
-		entity_arr = world.getNearbyEntities(player.getLocation(), 20, 20, 20);
+		entity_arr = player.getNearbyEntities(radius, radius, radius);
 		
-		while(entity_arr.iterator().hasNext())
-		{			
-			entity = entity_arr.iterator().next();
-			
-			if(entity instanceof LivingEntity && entity instanceof Monster)
+		for(Entity i: entity_arr)
+		{						
+			if(i instanceof LivingEntity && i instanceof Monster)
 			{
-				monster = (Monster) entity;
+				monster = (Monster) i;
 				
-				if(entity.getCustomName().startsWith("Level"))
+				if(monster.getCustomName().startsWith("Level"))
 					monster.remove();
 			}
 		}

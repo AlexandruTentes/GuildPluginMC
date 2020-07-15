@@ -58,6 +58,8 @@ public class PluginLogger
 		
 		if(exception.getCause() != null)
 			output += "DETAILS: " + exception.getCause().getStackTrace()[0];
+		else
+			return;
 		
 		if(exception.getCause().getStackTrace() != null)
 			output += "\nLINES: " + exception.getCause().getStackTrace()[0].getLineNumber();
